@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التقارير | سكاي فوود</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <div class="app-container glass-panel">
+        <header class="main-header">
+            <div class="logo-area">
+                <i data-lucide="rocket" class="accent-icon glow"></i>
+                <div>
+                    <h1>سكاي فوود</h1>
+                    <h2>صفحة التقارير</h2>
+                </div>
+            </div>
+            <nav class="top-nav">
+                <a href="index.html" class="nav-item">
+                    <i data-lucide="home"></i> الرئيسية
+                </a>
+                <a href="reports.html" class="nav-item active">
+                    <i data-lucide="file-text"></i> التقارير
+                </a>
+            </nav>
+        </header>
+
+        <!-- Admin Login Floating Container -->
+        <div class="admin-floating">
+            <input type="password" id="adminPass" placeholder="ادخل الرقم السري">
+            <button onclick="checkPassword()" class="btn btn-primary" style="padding: 8px 16px;">دخول</button>
+        </div>
+
+        <section class="container hidden" id="reportsContainer">
+            <div class="feed-header">
+                <h2>التقارير المرسلة</h2>
+                <i data-lucide="database" class="accent-icon"></i>
+            </div>
+            <div id="reportsList" class="reports-grid">
+                <!-- Reports will load here -->
+            </div>
+        </section>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سكاي فوود</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="dark-theme">
+
+    <div class="app-container glass-panel">
+        <header class="main-header">
+            <div class="logo-area">
+                <i data-lucide="rocket" class="accent-icon glow"></i>
+                <div>
+                    <h1>سكاي فوود</h1>
+                    <h2>للصناعات الغذائية</h2>
+                </div>
+            </div>
+            <nav class="top-nav">
+                <a href="index.html" class="nav-item active">
+                    <i data-lucide="home"></i> الرئيسية
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <i data-lucide="file-text"></i> التقارير
+                </a>
+            </nav>
+        </header>
+
+        <section class="container">
+            <div class="actions-area">
+                <button id="openFormBtn" class="btn btn-primary main-btn">
+                    <i data-lucide="plus-circle"></i> كتابة التقرير اليومي
+                </button>
+            </div>
+
+            <form id="reportForm" class="hidden form-glass">
+                <div class="form-grid">
+                    <div class="form-section">
+                        <div class="section-header">
+                            <i data-lucide="user"></i>
+                            <h3>القسم الأول: معلومات أساسية</h3>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-field">
+                                <label for="engineer">اسم المهندس</label>
+                                <input type="text" id="engineer" placeholder="أدخل اسم المهندس" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="area">المنطقة</label>
+                                <input type="text" id="area" placeholder="المنطقة أو المصنع" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="date">التاريخ</label>
+                                <input type="date" id="date" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <div class="section-header">
+                            <i data-lucide="package"></i>
+                            <h3>القسم الثاني: تشغيل البراميل</h3>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-field">
+                                <label for="opened">عدد البراميل المفتوحة</label>
+                                <input type="number" id="opened" placeholder="0" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="damaged">عدد البراميل المخرومة</label>
+                                <input type="number" id="damaged" placeholder="0" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="good">عدد البراميل السليمة</label>
+                                <input type="number" id="good" placeholder="0" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <div class="section-header">
+                            <i data-lucide="droplet"></i>
+                            <h3>القسم الثالث: المحلول الملحي</h3>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-field">
+                                <label for="prepared">عدد الكميات المجهزة</label>
+                                <input type="number" id="prepared" placeholder="0" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="used">كمية المحلول المستخدم (طن)</label>
+                                <input type="number" id="used" placeholder="0" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="concentration">تركيز المحلول</label>
+                                <input type="text" id="concentration" placeholder="مثال: 15%" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <div class="section-header">
+                            <i data-lucide="test-tubes"></i>
+                            <h3>القسم الرابع: رصيد المستلزمات</h3>
+                        </div>
+                        <div class="input-group grid-3">
+                            <div class="input-field">
+                                <label for="chloride">كلوريد</label>
+                                <input type="number" id="chloride" placeholder="كجم" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="vinegar">خل</label>
+                                <input type="number" id="vinegar" placeholder="لتر" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="citric">ستريك</label>
+                                <input type="number" id="citric" placeholder="كجم" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="lactic">لاكتيك</label>
+                                <input type="number" id="lactic" placeholder="كجم" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="benzoate">بنزوات</label>
+                                <input type="number" id="benzoate" placeholder="كجم" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="sulfur">كبريت</label>
+                                <input type="number" id="sulfur" placeholder="كجم" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section form-section-full">
+                    <div class="section-header">
+                        <i data-lucide="clipboard-signature"></i>
+                        <h3>القسم الخامس: ملاحظات</h3>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-field">
+                            <label for="notes">ملاحظات إضافية</label>
+                            <textarea id="notes" placeholder="اكتب ملاحظاتك أو أي مشاكل تم رصدها هنا..."
+                                rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+    </div> <!-- Closes the form-grid -->
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-accent submit-btn">
+            <i data-lucide="send"></i> إرسال التقرير
+        </button>
+        <button type="button" class="btn btn-outline" id="cancelBtn">إلغاء</button>
+    </div>
+    </form>
+
+    <div id="successMessage" class="success-alert hidden">
+        <i data-lucide="check-circle"></i>
+        <span>تم إرسال التقرير بنجاح ✔</span>
+    </div>
+
+    </section>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
