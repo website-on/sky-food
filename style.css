@@ -171,8 +171,8 @@ body {
 }
 
 .form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 24px;
 }
 
@@ -208,8 +208,8 @@ body {
 }
 
 .input-group.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 18px;
 }
 
@@ -249,10 +249,18 @@ body {
 .form-actions {
     margin-top: 30px;
     display: flex;
+    flex-direction: column;
     gap: 16px;
     padding-top: 24px;
     border-top: 1px solid var(--border-color);
+    width: 100%;
+}
+
+.form-actions .btn {
+    width: 100%;
     justify-content: center;
+    padding: 16px;
+    font-size: 16px;
 }
 
 /* Premium Buttons */
