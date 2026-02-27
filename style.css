@@ -55,7 +55,8 @@ body {
     width: 100%;
     max-width: 1100px;
     border-radius: var(--radius-lg);
-    overflow: hidden;
+    overflow: visible;
+    /* Fixed clipping bug for mobile and modals */
     display: flex;
     flex-direction: column;
     box-shadow: var(--shadow-lg);
@@ -168,6 +169,10 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+#reportForm {
+    display: block !important;
 }
 
 .form-grid {
@@ -580,6 +585,8 @@ body {
         border: none;
         box-shadow: none;
         min-height: 100vh;
+        overflow: visible;
+        /* Removed flex to stop iOS bugs */
     }
 
     .main-header {
