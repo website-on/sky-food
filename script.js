@@ -20,23 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lucide.createIcons();
     }
 
-    const openBtn = document.getElementById("openFormBtn");
-    if (openBtn) {
-        openBtn.onclick = function () {
-            document.getElementById("reportForm").classList.remove("hidden");
-            openBtn.style.display = "none";
-        };
 
-        const cancelBtn = document.getElementById('cancelBtn');
-        if (cancelBtn) {
-            cancelBtn.addEventListener('click', () => {
-                document.getElementById('reportForm').classList.add('hidden');
-                openBtn.style.display = 'inline-flex';
-                document.getElementById('reportForm').reset();
-                document.getElementById("reportForm").removeAttribute("data-edit-id");
-            });
-        }
-    }
 
     const form = document.getElementById("reportForm");
     if (form) {
@@ -92,8 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 form.reset();
-                form.classList.add("hidden");
-                if (openBtn) openBtn.style.display = "inline-flex";
 
             } catch (e) {
                 console.error("Error writing document: ", e);
@@ -143,10 +125,7 @@ window.editReport = function (id) {
     if (document.getElementById("notes")) document.getElementById("notes").value = r.notes || "";
 
     const form = document.getElementById("reportForm");
-    const openBtn = document.getElementById("openFormBtn");
-
-    if (form) form.classList.remove("hidden");
-    if (openBtn) openBtn.style.display = "none";
+    form.removeAttribute("data-edit-id");
 
     if (form) form.scrollIntoView({ behavior: 'smooth' });
     if (form) form.setAttribute("data-edit-id", id);
