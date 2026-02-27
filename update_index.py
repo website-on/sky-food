@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+import os
+
+index_html_path = r"d:\company\antigravity\index.html"
+script_js_path = r"d:\company\antigravity\script.js"
+style_css_path = r"d:\company\antigravity\style.css"
+
+with open(index_html_path, "w", encoding="utf-8") as f:
+    f.write("""<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
@@ -33,7 +40,7 @@
         </header>
 
         <section class="container">
-
+            
             <div id="reportSelection" class="report-selection-grid">
                 <div class="selection-card" onclick="showForm('dailyReportForm')">
                     <div class="icon-wrapper"><i data-lucide="sun"></i></div>
@@ -51,13 +58,10 @@
             <form id="reportForm" class="form-glass hidden" style="margin-top: 20px;">
                 <div class="form-header-row">
                     <div class="section-header" style="margin:0;">
-                        <i data-lucide="calendar" style="color:var(--accent-1); width:24px; height:24px;"></i>
-                        <h2 style="font-size: 22px; font-weight:800; color:var(--text-primary); margin:0;">التقرير
-                            السنوي</h2>
+                         <i data-lucide="calendar" style="color:var(--accent-1); width:24px; height:24px;"></i>
+                        <h2 style="font-size: 22px; font-weight:800; color:var(--text-primary); margin:0;">التقرير السنوي</h2>
                     </div>
-                    <button type="button" class="btn btn-outline close-form-btn" onclick="hideForms()"
-                        style="padding: 6px 14px; font-size: 14px; margin-right:auto;"><i data-lucide="x"></i>
-                        إغلاق</button>
+                    <button type="button" class="btn btn-outline close-form-btn" onclick="hideForms()" style="padding: 6px 14px; font-size: 14px; margin-right:auto;"><i data-lucide="x"></i> إغلاق</button>
                 </div>
                 <div class="form-grid" style="margin-top:20px;">
                     <div class="form-section">
@@ -129,18 +133,12 @@
                             <h3>القسم الرابع: رصيد المستلزمات</h3>
                         </div>
                         <div class="input-group grid-3">
-                            <div class="input-field"><label for="chloride">كلوريد</label><input type="number"
-                                    id="chloride" placeholder="كجم" required></div>
-                            <div class="input-field"><label for="vinegar">خل</label><input type="number" id="vinegar"
-                                    placeholder="لتر" required></div>
-                            <div class="input-field"><label for="citric">ستريك</label><input type="number" id="citric"
-                                    placeholder="كجم" required></div>
-                            <div class="input-field"><label for="lactic">لاكتيك</label><input type="number" id="lactic"
-                                    placeholder="كجم" required></div>
-                            <div class="input-field"><label for="benzoate">بنزوات</label><input type="number"
-                                    id="benzoate" placeholder="كجم" required></div>
-                            <div class="input-field"><label for="sulfur">كبريت</label><input type="number" id="sulfur"
-                                    placeholder="كجم" required></div>
+                            <div class="input-field"><label for="chloride">كلوريد</label><input type="number" id="chloride" placeholder="كجم" required></div>
+                            <div class="input-field"><label for="vinegar">خل</label><input type="number" id="vinegar" placeholder="لتر" required></div>
+                            <div class="input-field"><label for="citric">ستريك</label><input type="number" id="citric" placeholder="كجم" required></div>
+                            <div class="input-field"><label for="lactic">لاكتيك</label><input type="number" id="lactic" placeholder="كجم" required></div>
+                            <div class="input-field"><label for="benzoate">بنزوات</label><input type="number" id="benzoate" placeholder="كجم" required></div>
+                            <div class="input-field"><label for="sulfur">كبريت</label><input type="number" id="sulfur" placeholder="كجم" required></div>
                         </div>
                     </div>
 
@@ -152,8 +150,7 @@
                         <div class="input-group">
                             <div class="input-field">
                                 <label for="notes">ملاحظات إضافية</label>
-                                <textarea id="notes" placeholder="اكتب ملاحظاتك أو أي مشاكل تم رصدها هنا..."
-                                    rows="3"></textarea>
+                                <textarea id="notes" placeholder="اكتب ملاحظاتك أو أي مشاكل تم رصدها هنا..." rows="3"></textarea>
                             </div>
                         </div>
                     </div>
@@ -171,14 +168,11 @@
                 <div class="form-header-row">
                     <div class="section-header" style="margin:0;">
                         <i data-lucide="sun" style="color:var(--accent-1); width:24px; height:24px;"></i>
-                        <h2 style="font-size: 22px; font-weight:800; color:var(--text-primary); margin:0;">التقرير
-                            اليومي – وحدة المحاليل</h2>
+                        <h2 style="font-size: 22px; font-weight:800; color:var(--text-primary); margin:0;">التقرير اليومي – وحدة المحاليل</h2>
                     </div>
-                    <button type="button" class="btn btn-outline close-form-btn" onclick="hideForms()"
-                        style="padding: 6px 14px; font-size: 14px; margin-right:auto;"><i data-lucide="x"></i>
-                        إغلاق</button>
+                    <button type="button" class="btn btn-outline close-form-btn" onclick="hideForms()" style="padding: 6px 14px; font-size: 14px; margin-right:auto;"><i data-lucide="x"></i> إغلاق</button>
                 </div>
-
+                
                 <div class="form-grid" style="margin-top:20px;">
                     <div class="form-section">
                         <div class="section-header">
@@ -230,8 +224,7 @@
                                         <td><input type="number" id="t_sol_half" placeholder="0" required></td>
                                         <td><input type="number" id="t_sol_low" placeholder="0" required></td>
                                         <td><input type="number" id="t_sol_empty" placeholder="0" required></td>
-                                        <td><input type="number" id="t_sol_total" placeholder="0" step="0.1" required>
-                                        </td>
+                                        <td><input type="number" id="t_sol_total" placeholder="0" step="0.1" required></td>
                                     </tr>
                                     <tr>
                                         <td><strong>المياه</strong></td>
@@ -240,8 +233,7 @@
                                         <td><input type="number" id="t_wat_half" placeholder="0" required></td>
                                         <td><input type="number" id="t_wat_low" placeholder="0" required></td>
                                         <td><input type="number" id="t_wat_empty" placeholder="0" required></td>
-                                        <td><input type="number" id="t_wat_total" placeholder="0" step="0.1" required>
-                                        </td>
+                                        <td><input type="number" id="t_wat_total" placeholder="0" step="0.1" required></td>
                                     </tr>
                                     <tr>
                                         <td><strong>الصودا</strong></td>
@@ -250,8 +242,7 @@
                                         <td><input type="number" id="t_sod_half" placeholder="0" required></td>
                                         <td><input type="number" id="t_sod_low" placeholder="0" required></td>
                                         <td><input type="number" id="t_sod_empty" placeholder="0" required></td>
-                                        <td><input type="number" id="t_sod_total" placeholder="0" step="0.1" required>
-                                        </td>
+                                        <td><input type="number" id="t_sod_total" placeholder="0" step="0.1" required></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -265,14 +256,10 @@
                         </div>
                         <div class="input-group">
                             <div class="input-group grid-4">
-                                <div class="input-field"><label>القسم</label><input type="text" id="fu_section"
-                                        placeholder="القسم" required></div>
-                                <div class="input-field"><label>رقم التنك</label><input type="text" id="fu_tank_no"
-                                        placeholder="رقم التنك" required></div>
-                                <div class="input-field"><label>الحالة</label><input type="text" id="fu_status"
-                                        placeholder="الحالة" required></div>
-                                <div class="input-field"><label>الإجراء المطلوب</label><input type="text" id="fu_action"
-                                        placeholder="الإجراء المطلوب"></div>
+                                <div class="input-field"><label>القسم</label><input type="text" id="fu_section" placeholder="القسم" required></div>
+                                <div class="input-field"><label>رقم التنك</label><input type="text" id="fu_tank_no" placeholder="رقم التنك" required></div>
+                                <div class="input-field"><label>الحالة</label><input type="text" id="fu_status" placeholder="الحالة" required></div>
+                                <div class="input-field"><label>الإجراء المطلوب</label><input type="text" id="fu_action" placeholder="الإجراء المطلوب"></div>
                             </div>
                         </div>
                     </div>
@@ -297,64 +284,43 @@
                                         <td><strong>كلوريد</strong></td>
                                         <td><input type="number" id="s_chlor_current" placeholder="0" required></td>
                                         <td><input type="number" id="s_chlor_min" placeholder="0" required></td>
-                                        <td><select id="s_chlor_order">
-                                                <option value="لا">لا</option>
-                                                <option value="نعم">نعم</option>
-                                            </select></td>
+                                        <td><select id="s_chlor_order"><option value="لا">لا</option><option value="نعم">نعم</option></select></td>
                                     </tr>
                                     <tr>
                                         <td><strong>لاكتيك</strong></td>
                                         <td><input type="number" id="s_lac_current" placeholder="0" required></td>
                                         <td><input type="number" id="s_lac_min" placeholder="0" required></td>
-                                        <td><select id="s_lac_order">
-                                                <option value="لا">لا</option>
-                                                <option value="نعم">نعم</option>
-                                            </select></td>
+                                        <td><select id="s_lac_order"><option value="لا">لا</option><option value="نعم">نعم</option></select></td>
                                     </tr>
                                     <tr>
                                         <td><strong>ستريك</strong></td>
                                         <td><input type="number" id="s_cit_current" placeholder="0" required></td>
                                         <td><input type="number" id="s_cit_min" placeholder="0" required></td>
-                                        <td><select id="s_cit_order">
-                                                <option value="لا">لا</option>
-                                                <option value="نعم">نعم</option>
-                                            </select></td>
+                                        <td><select id="s_cit_order"><option value="لا">لا</option><option value="نعم">نعم</option></select></td>
                                     </tr>
                                     <tr>
                                         <td><strong>خل</strong></td>
                                         <td><input type="number" id="s_vin_current" placeholder="0" required></td>
                                         <td><input type="number" id="s_vin_min" placeholder="0" required></td>
-                                        <td><select id="s_vin_order">
-                                                <option value="لا">لا</option>
-                                                <option value="نعم">نعم</option>
-                                            </select></td>
+                                        <td><select id="s_vin_order"><option value="لا">لا</option><option value="نعم">نعم</option></select></td>
                                     </tr>
                                     <tr>
                                         <td><strong>كبريت</strong></td>
                                         <td><input type="number" id="s_sul_current" placeholder="0" required></td>
                                         <td><input type="number" id="s_sul_min" placeholder="0" required></td>
-                                        <td><select id="s_sul_order">
-                                                <option value="لا">لا</option>
-                                                <option value="نعم">نعم</option>
-                                            </select></td>
+                                        <td><select id="s_sul_order"><option value="لا">لا</option><option value="نعم">نعم</option></select></td>
                                     </tr>
                                     <tr>
                                         <td><strong>بنزوات</strong></td>
                                         <td><input type="number" id="s_ben_current" placeholder="0" required></td>
                                         <td><input type="number" id="s_ben_min" placeholder="0" required></td>
-                                        <td><select id="s_ben_order">
-                                                <option value="لا">لا</option>
-                                                <option value="نعم">نعم</option>
-                                            </select></td>
+                                        <td><select id="s_ben_order"><option value="لا">لا</option><option value="نعم">نعم</option></select></td>
                                     </tr>
                                     <tr>
                                         <td><strong>ملح</strong></td>
                                         <td><input type="number" id="s_salt_current" placeholder="0" required></td>
                                         <td><input type="number" id="s_salt_min" placeholder="0" required></td>
-                                        <td><select id="s_salt_order">
-                                                <option value="لا">لا</option>
-                                                <option value="نعم">نعم</option>
-                                            </select></td>
+                                        <td><select id="s_salt_order"><option value="لا">لا</option><option value="نعم">نعم</option></select></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -395,4 +361,6 @@
     <script src="script.js"></script>
 </body>
 
-</html>
+</html>""")
+
+print("Saved index.html")

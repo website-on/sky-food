@@ -1,4 +1,8 @@
-const firebaseConfig = {
+import os
+
+script_js_path = r"d:\company\antigravity\script.js"
+
+content = """const firebaseConfig = {
     apiKey: "AIzaSyDzGC9Aic7CMkNfWp4WPVozumsXCQ0kccI",
     authDomain: "sky-food-8688f.firebaseapp.com",
     projectId: "sky-food-8688f",
@@ -16,37 +20,37 @@ const db = firebase.firestore();
 
 let currentReports = [];
 
-window.showForm = function (formId) {
+window.showForm = function(formId) {
     let sel = document.getElementById("reportSelection");
-    if (sel) sel.classList.add("hidden");
-
+    if(sel) sel.classList.add("hidden");
+    
     let f1 = document.getElementById("reportForm");
     let f2 = document.getElementById("dailyReportForm");
-    if (f1) f1.classList.add("hidden");
-    if (f2) f2.classList.add("hidden");
-
+    if(f1) f1.classList.add("hidden");
+    if(f2) f2.classList.add("hidden");
+    
     let target = document.getElementById(formId);
-    if (target) target.classList.remove("hidden");
+    if(target) target.classList.remove("hidden");
     window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
-window.hideForms = function () {
+window.hideForms = function() {
     let f1 = document.getElementById("reportForm");
     let f2 = document.getElementById("dailyReportForm");
-    if (f1) {
+    if(f1) {
         f1.classList.add("hidden");
         f1.reset();
         f1.removeAttribute("data-edit-id");
     }
-    if (f2) {
+    if(f2) {
         f2.classList.add("hidden");
         f2.reset();
         f2.removeAttribute("data-edit-id");
     }
-
+    
     let sel = document.getElementById("reportSelection");
-    if (sel) sel.classList.remove("hidden");
-
+    if(sel) sel.classList.remove("hidden");
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
@@ -135,21 +139,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 date: document.getElementById("daily_date").value,
                 shift: document.getElementById("daily_shift").value,
                 manager: document.getElementById("daily_manager").value,
-
+                
                 t_sol_count: document.getElementById("t_sol_count").value || "0",
                 t_sol_full: document.getElementById("t_sol_full").value || "0",
                 t_sol_half: document.getElementById("t_sol_half").value || "0",
                 t_sol_low: document.getElementById("t_sol_low").value || "0",
                 t_sol_empty: document.getElementById("t_sol_empty").value || "0",
                 t_sol_total: document.getElementById("t_sol_total").value || "0",
-
+                
                 t_wat_count: document.getElementById("t_wat_count").value || "0",
                 t_wat_full: document.getElementById("t_wat_full").value || "0",
                 t_wat_half: document.getElementById("t_wat_half").value || "0",
                 t_wat_low: document.getElementById("t_wat_low").value || "0",
                 t_wat_empty: document.getElementById("t_wat_empty").value || "0",
                 t_wat_total: document.getElementById("t_wat_total").value || "0",
-
+                
                 t_sod_count: document.getElementById("t_sod_count").value || "0",
                 t_sod_full: document.getElementById("t_sod_full").value || "0",
                 t_sod_half: document.getElementById("t_sod_half").value || "0",
@@ -264,21 +268,6 @@ window.checkPassword = function () {
     }
 };
 
-window.toggleReportContent = function (id) {
-    let content = document.getElementById('content_' + id);
-    let icon = document.getElementById('icon_' + id);
-    if (content) {
-        if (content.classList.contains('hidden')) {
-            content.classList.remove('hidden');
-            if (icon) icon.setAttribute('data-lucide', 'chevron-up');
-        } else {
-            content.classList.add('hidden');
-            if (icon) icon.setAttribute('data-lucide', 'chevron-down');
-        }
-        if (typeof lucide !== 'undefined') lucide.createIcons();
-    }
-};
-
 window.loadReports = async function () {
     let container = document.getElementById("reportsList");
     if (!container) return;
@@ -314,10 +303,10 @@ window.loadReports = async function () {
         currentReports.forEach(r => {
             const dateObj = new Date(r.date);
             const dateStr = !isNaN(dateObj) ? dateObj.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' }) : r.date;
-
+            
             let cardHtml = "";
 
-            if (r.type === "daily") {
+            if(r.type === "daily") {
                 let requests = [
                     r.s_chlor_order === "نعم" ? "كلوريد" : "",
                     r.s_lac_order === "نعم" ? "لاكتيك" : "",
@@ -330,14 +319,10 @@ window.loadReports = async function () {
 
                 cardHtml = `
                     <div class="report-card">
-                        <div class="rc-header" onclick="window.toggleReportContent('${r.id}')" style="cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
-                            <div style="display:flex; align-items:center; gap:8px;">
-                                <span class="rc-title"><i data-lucide="sun" style="width:18px; margin-left:6px; color:var(--accent-1);"></i> التقرير اليومي – وحدة المحاليل</span>
-                                <i data-lucide="chevron-down" id="icon_${r.id}" style="width:16px; margin-right:8px;"></i>
-                            </div>
+                        <div class="rc-header">
+                            <span class="rc-title"><i data-lucide="sun" style="width:18px; margin-left:6px; color:var(--accent-1);"></i> التقرير اليومي – وحدة المحاليل</span>
                             <span class="rc-date">${dateStr}</span>
                         </div>
-                        <div id="content_${r.id}" class="hidden rc-content-wrapper">
                         <div class="rc-body">
                             <p><span class="rc-label">الوردية:</span> <span class="rc-value">${r.shift}</span></p>
                             <p><span class="rc-label">مسؤول التخزين:</span> <span class="rc-value danger-text">${r.managerSig || r.manager}</span></p>
@@ -386,7 +371,6 @@ window.loadReports = async function () {
                          <div class="rc-footer justify-end" style="border-top:none; margin-top:0;">
                             <button onclick="window.deleteReport('${r.id}')" class="btn btn-danger" style="margin-right:auto;"><i data-lucide="trash-2"></i> حذف (أدمن)</button>
                         </div>
-                        </div> <!-- End of content wrapper -->
                     </div>
                 `;
             } else {
@@ -397,14 +381,10 @@ window.loadReports = async function () {
 
                 cardHtml = `
                     <div class="report-card">
-                        <div class="rc-header" onclick="window.toggleReportContent('${r.id}')" style="cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
-                            <div style="display:flex; align-items:center; gap:8px;">
-                                <span class="rc-title"><i data-lucide="calendar" style="width:18px; margin-left:6px; color:var(--accent-2);"></i> التقرير السنوي – ${r.engineer || "غير محدد"}</span>
-                                <i data-lucide="chevron-down" id="icon_${r.id}" style="width:16px; margin-right:8px;"></i>
-                            </div>
+                        <div class="rc-header">
+                            <span class="rc-title"><i data-lucide="calendar" style="width:18px; margin-left:6px; color:var(--accent-2);"></i> التقرير السنوي – ${r.engineer || "غير محدد"}</span>
                             <span class="rc-date">${dateStr}</span>
                         </div>
-                        <div id="content_${r.id}" class="hidden rc-content-wrapper">
                         <div class="rc-body">
                             <p><span class="rc-label">المنطقة:</span> <span class="rc-value">${r.area}</span></p>
                             <p><span class="rc-label">البراميل:</span> <span class="rc-value">مفتوحة ${r.opened} - مخرومة <span class="danger-text">${r.damaged}</span> - سليمة ${r.good}</span></p>
@@ -445,7 +425,6 @@ window.loadReports = async function () {
                          <div class="rc-footer justify-end" style="border-top:none; margin-top:0;">
                             <button onclick="window.deleteReport('${r.id}')" class="btn btn-danger" style="margin-right:auto;"><i data-lucide="trash-2"></i> حذف (أدمن)</button>
                         </div>
-                        </div> <!-- End of content wrapper -->
                     </div>
                 `;
             }
@@ -460,3 +439,9 @@ window.loadReports = async function () {
         container.innerHTML = `<p style="color:red; text-align:center;">حدث خطأ في تحميل البيانات من الخادم.</p>`;
     }
 };
+"""
+
+with open(script_js_path, "w", encoding="utf-8") as f:
+    f.write(content)
+
+print("Saved script.js")
