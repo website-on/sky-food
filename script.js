@@ -141,21 +141,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 t_sol_half: document.getElementById("t_sol_half").value || "0",
                 t_sol_low: document.getElementById("t_sol_low").value || "0",
                 t_sol_empty: document.getElementById("t_sol_empty").value || "0",
-                t_sol_total: document.getElementById("t_sol_total").value || "0",
 
                 t_wat_count: document.getElementById("t_wat_count").value || "0",
                 t_wat_full: document.getElementById("t_wat_full").value || "0",
                 t_wat_half: document.getElementById("t_wat_half").value || "0",
                 t_wat_low: document.getElementById("t_wat_low").value || "0",
                 t_wat_empty: document.getElementById("t_wat_empty").value || "0",
-                t_wat_total: document.getElementById("t_wat_total").value || "0",
 
                 t_sod_count: document.getElementById("t_sod_count").value || "0",
                 t_sod_full: document.getElementById("t_sod_full").value || "0",
                 t_sod_half: document.getElementById("t_sod_half").value || "0",
                 t_sod_low: document.getElementById("t_sod_low").value || "0",
                 t_sod_empty: document.getElementById("t_sod_empty").value || "0",
-                t_sod_total: document.getElementById("t_sod_total").value || "0",
 
                 fu_section: document.getElementById("fu_section").value || "",
                 fu_tank_no: document.getElementById("fu_tank_no").value || "",
@@ -163,25 +160,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 fu_action: document.getElementById("fu_action").value || "",
 
                 s_chlor_current: document.getElementById("s_chlor_current").value || "0",
-                s_chlor_min: document.getElementById("s_chlor_min").value || "0",
                 s_chlor_order: document.getElementById("s_chlor_order").value || "لا",
                 s_lac_current: document.getElementById("s_lac_current").value || "0",
-                s_lac_min: document.getElementById("s_lac_min").value || "0",
                 s_lac_order: document.getElementById("s_lac_order").value || "لا",
                 s_cit_current: document.getElementById("s_cit_current").value || "0",
-                s_cit_min: document.getElementById("s_cit_min").value || "0",
                 s_cit_order: document.getElementById("s_cit_order").value || "لا",
                 s_vin_current: document.getElementById("s_vin_current").value || "0",
-                s_vin_min: document.getElementById("s_vin_min").value || "0",
                 s_vin_order: document.getElementById("s_vin_order").value || "لا",
                 s_sul_current: document.getElementById("s_sul_current").value || "0",
-                s_sul_min: document.getElementById("s_sul_min").value || "0",
                 s_sul_order: document.getElementById("s_sul_order").value || "لا",
                 s_ben_current: document.getElementById("s_ben_current").value || "0",
-                s_ben_min: document.getElementById("s_ben_min").value || "0",
                 s_ben_order: document.getElementById("s_ben_order").value || "لا",
                 s_salt_current: document.getElementById("s_salt_current").value || "0",
-                s_salt_min: document.getElementById("s_salt_min").value || "0",
                 s_salt_order: document.getElementById("s_salt_order").value || "لا",
 
                 notes: document.getElementById("daily_notes").value || "",
@@ -345,10 +335,10 @@ window.loadReports = async function () {
                             <div class="rc-box">
                                 <span class="rc-label" style="display:block; margin-bottom:8px; border-bottom:1px solid #cbd5e1; padding-bottom:4px;">توزيع حالة التنكات:</span>
                                 <table style="width:100%; font-size:13px; text-align:center; border-collapse:collapse; margin-bottom:10px;">
-                                    <tr style="background:#f1f5f9;"><th>النوع</th><th>العدد</th><th>ممتلئ</th><th>نصف</th><th>منخفض</th><th>فارغ</th><th>الكمية(طن)</th></tr>
-                                    <tr style="border-bottom:1px solid #e2e8f0;"><td>المحلول</td><td>${r.t_sol_count}</td><td>${r.t_sol_full}</td><td>${r.t_sol_half}</td><td>${r.t_sol_low}</td><td>${r.t_sol_empty}</td><td>${r.t_sol_total}</td></tr>
-                                    <tr style="border-bottom:1px solid #e2e8f0;"><td>المياه</td><td>${r.t_wat_count}</td><td>${r.t_wat_full}</td><td>${r.t_wat_half}</td><td>${r.t_wat_low}</td><td>${r.t_wat_empty}</td><td>${r.t_wat_total}</td></tr>
-                                    <tr><td>الصودا</td><td>${r.t_sod_count}</td><td>${r.t_sod_full}</td><td>${r.t_sod_half}</td><td>${r.t_sod_low}</td><td>${r.t_sod_empty}</td><td>${r.t_sod_total}</td></tr>
+                                    <tr style="background:#f1f5f9;"><th>النوع</th><th>العدد</th><th>ممتلئ</th><th>نصف</th><th>منخفض</th><th>فارغ</th></tr>
+                                    <tr style="border-bottom:1px solid #e2e8f0;"><td>المحلول</td><td>${r.t_sol_count}</td><td>${r.t_sol_full}</td><td>${r.t_sol_half}</td><td>${r.t_sol_low}</td><td>${r.t_sol_empty}</td></tr>
+                                    <tr style="border-bottom:1px solid #e2e8f0;"><td>المياه</td><td>${r.t_wat_count}</td><td>${r.t_wat_full}</td><td>${r.t_wat_half}</td><td>${r.t_wat_low}</td><td>${r.t_wat_empty}</td></tr>
+                                    <tr><td>الصودا</td><td>${r.t_sod_count}</td><td>${r.t_sod_full}</td><td>${r.t_sod_half}</td><td>${r.t_sod_low}</td><td>${r.t_sod_empty}</td></tr>
                                 </table>
                             </div>
 

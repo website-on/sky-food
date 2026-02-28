@@ -219,7 +219,6 @@
                                         <th>نصف ممتلئ</th>
                                         <th>منخفض</th>
                                         <th>فارغ</th>
-                                        <th>إجمالي الكمية (طن)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -230,8 +229,6 @@
                                         <td><input type="number" id="t_sol_half" placeholder="0" required></td>
                                         <td><input type="number" id="t_sol_low" placeholder="0" required></td>
                                         <td><input type="number" id="t_sol_empty" placeholder="0" required></td>
-                                        <td><input type="number" id="t_sol_total" placeholder="0" step="0.1" required>
-                                        </td>
                                     </tr>
                                     <tr>
                                         <td><strong>المياه</strong></td>
@@ -240,8 +237,6 @@
                                         <td><input type="number" id="t_wat_half" placeholder="0" required></td>
                                         <td><input type="number" id="t_wat_low" placeholder="0" required></td>
                                         <td><input type="number" id="t_wat_empty" placeholder="0" required></td>
-                                        <td><input type="number" id="t_wat_total" placeholder="0" step="0.1" required>
-                                        </td>
                                     </tr>
                                     <tr>
                                         <td><strong>الصودا</strong></td>
@@ -250,8 +245,6 @@
                                         <td><input type="number" id="t_sod_half" placeholder="0" required></td>
                                         <td><input type="number" id="t_sod_low" placeholder="0" required></td>
                                         <td><input type="number" id="t_sod_empty" placeholder="0" required></td>
-                                        <td><input type="number" id="t_sod_total" placeholder="0" step="0.1" required>
-                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -288,7 +281,6 @@
                                     <tr>
                                         <th>الصنف</th>
                                         <th>الرصيد الحالي</th>
-                                        <th>الحد الأدنى</th>
                                         <th>يحتاج طلب</th>
                                     </tr>
                                 </thead>
@@ -296,7 +288,6 @@
                                     <tr>
                                         <td><strong>كلوريد</strong></td>
                                         <td><input type="number" id="s_chlor_current" placeholder="0" required></td>
-                                        <td><input type="number" id="s_chlor_min" placeholder="0" required></td>
                                         <td><select id="s_chlor_order">
                                                 <option value="لا">لا</option>
                                                 <option value="نعم">نعم</option>
@@ -305,7 +296,6 @@
                                     <tr>
                                         <td><strong>لاكتيك</strong></td>
                                         <td><input type="number" id="s_lac_current" placeholder="0" required></td>
-                                        <td><input type="number" id="s_lac_min" placeholder="0" required></td>
                                         <td><select id="s_lac_order">
                                                 <option value="لا">لا</option>
                                                 <option value="نعم">نعم</option>
@@ -314,7 +304,6 @@
                                     <tr>
                                         <td><strong>ستريك</strong></td>
                                         <td><input type="number" id="s_cit_current" placeholder="0" required></td>
-                                        <td><input type="number" id="s_cit_min" placeholder="0" required></td>
                                         <td><select id="s_cit_order">
                                                 <option value="لا">لا</option>
                                                 <option value="نعم">نعم</option>
@@ -323,7 +312,6 @@
                                     <tr>
                                         <td><strong>خل</strong></td>
                                         <td><input type="number" id="s_vin_current" placeholder="0" required></td>
-                                        <td><input type="number" id="s_vin_min" placeholder="0" required></td>
                                         <td><select id="s_vin_order">
                                                 <option value="لا">لا</option>
                                                 <option value="نعم">نعم</option>
@@ -332,7 +320,6 @@
                                     <tr>
                                         <td><strong>كبريت</strong></td>
                                         <td><input type="number" id="s_sul_current" placeholder="0" required></td>
-                                        <td><input type="number" id="s_sul_min" placeholder="0" required></td>
                                         <td><select id="s_sul_order">
                                                 <option value="لا">لا</option>
                                                 <option value="نعم">نعم</option>
@@ -341,7 +328,6 @@
                                     <tr>
                                         <td><strong>بنزوات</strong></td>
                                         <td><input type="number" id="s_ben_current" placeholder="0" required></td>
-                                        <td><input type="number" id="s_ben_min" placeholder="0" required></td>
                                         <td><select id="s_ben_order">
                                                 <option value="لا">لا</option>
                                                 <option value="نعم">نعم</option>
@@ -350,7 +336,6 @@
                                     <tr>
                                         <td><strong>ملح</strong></td>
                                         <td><input type="number" id="s_salt_current" placeholder="0" required></td>
-                                        <td><input type="number" id="s_salt_min" placeholder="0" required></td>
                                         <td><select id="s_salt_order">
                                                 <option value="لا">لا</option>
                                                 <option value="نعم">نعم</option>
