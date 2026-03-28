@@ -13,6 +13,9 @@ if (!firebase.apps.length) {
 }
 
 const db = firebase.firestore();
+const auth = firebase.auth();
+
+auth.setPersistence(firebase.auth.Auth.Persistence.NONE);
 
 let currentReports = [];
 
@@ -242,15 +245,36 @@ window.saveAdminData = async function (id) {
     }
 }
 
-window.checkPassword = function () {
-    let pass = document.getElementById("adminPass").value;
-    if (pass === "1357") {
+window.checkPassword = async function () {
+    const adminEmail = "skyfood@admin.com";
+    const pass = document.getElementById("adminPass").value;
+
+    if (!pass) {
+        alert("الرجاء إدخال الرقم السري.");
+        return;
+    }
+
+    try {
+        await auth.signInWithEmailAndPassword(adminEmail, pass);
         document.getElementById("reportsContainer").classList.remove("hidden");
         const floatingAdmin = document.querySelector(".admin-floating");
         if (floatingAdmin) floatingAdmin.classList.add("hidden");
         window.loadReports();
-    } else {
+    } catch (error) {
+        console.error("Login Error:", error);
         alert("الرقم السري غير صحيح. حاول مرة أخرى.");
+    }
+};
+
+window.logoutAdmin = async function () {
+    try {
+        await auth.signOut();
+        document.getElementById("reportsContainer").classList.add("hidden");
+        const floatingAdmin = document.querySelector(".admin-floating");
+        if (floatingAdmin) floatingAdmin.classList.remove("hidden");
+        document.getElementById("adminPass").value = "";
+    } catch (error) {
+        console.error("Error signing out", error);
     }
 };
 

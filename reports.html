@@ -39,9 +39,13 @@
         </div>
 
         <section class="container hidden" id="reportsContainer">
-            <div class="feed-header">
-                <h2>التقارير المرسلة</h2>
-                <i data-lucide="database" class="accent-icon"></i>
+            <div class="feed-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <h2>التقارير المرسلة</h2>
+                    <i data-lucide="database" class="accent-icon"></i>
+                </div>
+                <button onclick="logoutAdmin()" class="btn btn-danger" style="padding: 6px 12px; font-size: 14px;">تسجيل
+                    خروج</button>
             </div>
             <div id="reportsList" class="reports-grid">
                 <!-- Reports will load here -->
@@ -50,6 +54,7 @@
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
     <script src="script.js"></script>
 </body>
