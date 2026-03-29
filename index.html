@@ -32,7 +32,12 @@
             </nav>
         </header>
 
-        <section class="container">
+        <div class="admin-floating" id="userFloatingLogin">
+            <input type="password" id="userPass" placeholder="ادخل الرقم السري">
+            <button onclick="checkUserPassword()" class="btn btn-primary" style="padding: 8px 16px;">دخول</button>
+        </div>
+
+        <section class="container hidden" id="formsContainer">
 
             <div id="reportSelection" class="report-selection-grid">
                 <div class="selection-card" onclick="showForm('dailyReportForm')">

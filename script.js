@@ -58,6 +58,96 @@ document.addEventListener('DOMContentLoaded', () => {
         lucide.createIcons();
     }
 
+    let editDataStr = sessionStorage.getItem('editReportData');
+    if (editDataStr) {
+        let formsContainer = document.getElementById("formsContainer");
+        if (formsContainer) formsContainer.classList.remove("hidden");
+        let floatingUser = document.getElementById("userFloatingLogin");
+        if (floatingUser) floatingUser.classList.add("hidden");
+
+        // Authenticate silently to allow database write
+        auth.signInWithEmailAndPassword("hggghhg@jjhghg.com", "111111").catch(e => console.error("Silent Auth Edit Error", e));
+
+        try {
+            let editData = JSON.parse(editDataStr);
+            sessionStorage.removeItem('editReportData');
+
+            if (editData.type === 'daily') {
+                window.showForm('dailyReportForm');
+                let form = document.getElementById('dailyReportForm');
+                if (form) {
+                    form.setAttribute('data-edit-id', editData.id);
+                    document.getElementById("daily_date").value = editData.date || "";
+                    document.getElementById("daily_shift").value = editData.shift || "صباحي";
+                    document.getElementById("daily_manager").value = editData.manager || "";
+                    document.getElementById("t_sol_count").value = editData.t_sol_count || "0";
+                    document.getElementById("t_sol_full").value = editData.t_sol_full || "0";
+                    document.getElementById("t_sol_half").value = editData.t_sol_half || "0";
+                    document.getElementById("t_sol_low").value = editData.t_sol_low || "0";
+                    document.getElementById("t_sol_empty").value = editData.t_sol_empty || "0";
+                    document.getElementById("t_wat_count").value = editData.t_wat_count || "0";
+                    document.getElementById("t_wat_full").value = editData.t_wat_full || "0";
+                    document.getElementById("t_wat_half").value = editData.t_wat_half || "0";
+                    document.getElementById("t_wat_low").value = editData.t_wat_low || "0";
+                    document.getElementById("t_wat_empty").value = editData.t_wat_empty || "0";
+                    document.getElementById("t_sod_count").value = editData.t_sod_count || "0";
+                    document.getElementById("t_sod_full").value = editData.t_sod_full || "0";
+                    document.getElementById("t_sod_half").value = editData.t_sod_half || "0";
+                    document.getElementById("t_sod_low").value = editData.t_sod_low || "0";
+                    document.getElementById("t_sod_empty").value = editData.t_sod_empty || "0";
+                    document.getElementById("fu_section").value = editData.fu_section || "";
+                    document.getElementById("fu_tank_no").value = editData.fu_tank_no || "";
+                    document.getElementById("fu_status").value = editData.fu_status || "";
+                    document.getElementById("fu_action").value = editData.fu_action || "";
+                    document.getElementById("s_chlor_current").value = editData.s_chlor_current || "0";
+                    document.getElementById("s_chlor_order").value = editData.s_chlor_order || "لا";
+                    document.getElementById("s_lac_current").value = editData.s_lac_current || "0";
+                    document.getElementById("s_lac_order").value = editData.s_lac_order || "لا";
+                    document.getElementById("s_cit_current").value = editData.s_cit_current || "0";
+                    document.getElementById("s_cit_order").value = editData.s_cit_order || "لا";
+                    document.getElementById("s_vin_current").value = editData.s_vin_current || "0";
+                    document.getElementById("s_vin_order").value = editData.s_vin_order || "لا";
+                    document.getElementById("s_sul_current").value = editData.s_sul_current || "0";
+                    document.getElementById("s_sul_order").value = editData.s_sul_order || "لا";
+                    document.getElementById("s_ben_current").value = editData.s_ben_current || "0";
+                    document.getElementById("s_ben_order").value = editData.s_ben_order || "لا";
+                    document.getElementById("s_salt_current").value = editData.s_salt_current || "0";
+                    document.getElementById("s_salt_order").value = editData.s_salt_order || "لا";
+                    document.getElementById("daily_notes").value = editData.notes || "";
+
+                    const subBtn = form.querySelector(".submit-btn");
+                    if (subBtn) subBtn.innerHTML = `<i data-lucide="edit-3"></i> تحديث التقرير اليومي`;
+                }
+            } else {
+                window.showForm('reportForm');
+                let form = document.getElementById('reportForm');
+                if (form) {
+                    form.setAttribute('data-edit-id', editData.id);
+                    document.getElementById("engineer").value = editData.engineer || "";
+                    document.getElementById("area").value = editData.area || "";
+                    document.getElementById("date").value = editData.date || "";
+                    document.getElementById("opened").value = editData.opened || "0";
+                    document.getElementById("damaged").value = editData.damaged || "0";
+                    document.getElementById("good").value = editData.good || "0";
+                    document.getElementById("prepared").value = editData.prepared || "0";
+                    document.getElementById("used").value = editData.used || "0";
+                    document.getElementById("concentration").value = editData.concentration || "0%";
+                    document.getElementById("chloride").value = editData.chloride || "0";
+                    document.getElementById("vinegar").value = editData.vinegar || "0";
+                    document.getElementById("citric").value = editData.citric || "0";
+                    document.getElementById("lactic").value = editData.lactic || "0";
+                    document.getElementById("benzoate").value = editData.benzoate || "0";
+                    document.getElementById("sulfur").value = editData.sulfur || "0";
+                    document.getElementById("notes").value = editData.notes || "";
+
+                    const subBtn = form.querySelector(".submit-btn");
+                    if (subBtn) subBtn.innerHTML = `<i data-lucide="edit-3"></i> تحديث التقرير السنوي`;
+                }
+            }
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        } catch (e) { console.error("Error parsing edit data", e); }
+    }
+
     const form = document.getElementById("reportForm");
     if (form) {
         form.addEventListener("submit", async function (e) {
@@ -70,33 +160,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let editId = form.getAttribute("data-edit-id");
 
-            let report = {
-                type: "annual",
-                engineer: document.getElementById("engineer").value,
-                area: document.getElementById("area").value,
-                date: document.getElementById("date").value,
-                opened: document.getElementById("opened").value || "0",
-                damaged: document.getElementById("damaged").value || "0",
-                good: document.getElementById("good").value || "0",
-                prepared: document.getElementById("prepared").value || "0",
-                used: document.getElementById("used").value || "0",
-                concentration: document.getElementById("concentration").value || "0%",
-                chloride: document.getElementById("chloride").value || "0",
-                vinegar: document.getElementById("vinegar").value || "0",
-                citric: document.getElementById("citric").value || "0",
-                lactic: document.getElementById("lactic").value || "0",
-                benzoate: document.getElementById("benzoate").value || "0",
-                sulfur: document.getElementById("sulfur").value || "0",
-                notes: document.getElementById("notes") ? document.getElementById("notes").value : "",
-                timestamp: editId ? undefined : Date.now()
-            };
-
-            if (!editId) {
-                report.managerSig = "";
-                report.managerNotes = "";
-            }
-
             try {
+                let report = {
+                    type: "annual",
+                    engineer: document.getElementById("engineer")?.value || "",
+                    area: document.getElementById("area")?.value || "",
+                    date: document.getElementById("date")?.value || "",
+                    opened: document.getElementById("opened")?.value || "0",
+                    damaged: document.getElementById("damaged")?.value || "0",
+                    good: document.getElementById("good")?.value || "0",
+                    prepared: document.getElementById("prepared")?.value || "0",
+                    used: document.getElementById("used")?.value || "0",
+                    concentration: document.getElementById("concentration")?.value || "0%",
+                    chloride: document.getElementById("chloride")?.value || "0",
+                    vinegar: document.getElementById("vinegar")?.value || "0",
+                    citric: document.getElementById("citric")?.value || "0",
+                    lactic: document.getElementById("lactic")?.value || "0",
+                    benzoate: document.getElementById("benzoate")?.value || "0",
+                    sulfur: document.getElementById("sulfur")?.value || "0",
+                    notes: document.getElementById("notes") ? document.getElementById("notes").value : ""
+                };
+
+                if (!editId) {
+                    report.managerSig = "";
+                    report.managerNotes = "";
+                    report.timestamp = Date.now();
+                }
+
                 if (editId) {
                     await db.collection('reports').doc(editId).update(report);
                     form.removeAttribute("data-edit-id");
@@ -113,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.hideForms();
             } catch (e) {
                 console.error("Error writing document: ", e);
-                alert("حدث خطأ أثناء حفظ التقرير.");
+                alert("حدث خطأ أثناء حفظ التقرير: " + e.message);
             } finally {
                 subBtn.innerHTML = originalBtnHtml;
                 subBtn.disabled = false;
@@ -133,60 +223,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let editId = dailyForm.getAttribute("data-edit-id");
 
-            let report = {
-                type: "daily",
-                date: document.getElementById("daily_date").value,
-                shift: document.getElementById("daily_shift").value,
-                manager: document.getElementById("daily_manager").value,
-
-                t_sol_count: document.getElementById("t_sol_count").value || "0",
-                t_sol_full: document.getElementById("t_sol_full").value || "0",
-                t_sol_half: document.getElementById("t_sol_half").value || "0",
-                t_sol_low: document.getElementById("t_sol_low").value || "0",
-                t_sol_empty: document.getElementById("t_sol_empty").value || "0",
-
-                t_wat_count: document.getElementById("t_wat_count").value || "0",
-                t_wat_full: document.getElementById("t_wat_full").value || "0",
-                t_wat_half: document.getElementById("t_wat_half").value || "0",
-                t_wat_low: document.getElementById("t_wat_low").value || "0",
-                t_wat_empty: document.getElementById("t_wat_empty").value || "0",
-
-                t_sod_count: document.getElementById("t_sod_count").value || "0",
-                t_sod_full: document.getElementById("t_sod_full").value || "0",
-                t_sod_half: document.getElementById("t_sod_half").value || "0",
-                t_sod_low: document.getElementById("t_sod_low").value || "0",
-                t_sod_empty: document.getElementById("t_sod_empty").value || "0",
-
-                fu_section: document.getElementById("fu_section").value || "",
-                fu_tank_no: document.getElementById("fu_tank_no").value || "",
-                fu_status: document.getElementById("fu_status").value || "",
-                fu_action: document.getElementById("fu_action").value || "",
-
-                s_chlor_current: document.getElementById("s_chlor_current").value || "0",
-                s_chlor_order: document.getElementById("s_chlor_order").value || "لا",
-                s_lac_current: document.getElementById("s_lac_current").value || "0",
-                s_lac_order: document.getElementById("s_lac_order").value || "لا",
-                s_cit_current: document.getElementById("s_cit_current").value || "0",
-                s_cit_order: document.getElementById("s_cit_order").value || "لا",
-                s_vin_current: document.getElementById("s_vin_current").value || "0",
-                s_vin_order: document.getElementById("s_vin_order").value || "لا",
-                s_sul_current: document.getElementById("s_sul_current").value || "0",
-                s_sul_order: document.getElementById("s_sul_order").value || "لا",
-                s_ben_current: document.getElementById("s_ben_current").value || "0",
-                s_ben_order: document.getElementById("s_ben_order").value || "لا",
-                s_salt_current: document.getElementById("s_salt_current").value || "0",
-                s_salt_order: document.getElementById("s_salt_order").value || "لا",
-
-                notes: document.getElementById("daily_notes").value || "",
-                timestamp: editId ? undefined : Date.now()
-            };
-
-            if (!editId) {
-                report.managerSig = "";
-                report.managerNotes = "";
-            }
-
             try {
+                let report = {
+                    type: "daily",
+                    date: document.getElementById("daily_date")?.value || "",
+                    shift: document.getElementById("daily_shift")?.value || "",
+                    manager: document.getElementById("daily_manager")?.value || "",
+
+                    t_sol_count: document.getElementById("t_sol_count")?.value || "0",
+                    t_sol_full: document.getElementById("t_sol_full")?.value || "0",
+                    t_sol_half: document.getElementById("t_sol_half")?.value || "0",
+                    t_sol_low: document.getElementById("t_sol_low")?.value || "0",
+                    t_sol_empty: document.getElementById("t_sol_empty")?.value || "0",
+
+                    t_wat_count: document.getElementById("t_wat_count")?.value || "0",
+                    t_wat_full: document.getElementById("t_wat_full")?.value || "0",
+                    t_wat_half: document.getElementById("t_wat_half")?.value || "0",
+                    t_wat_low: document.getElementById("t_wat_low")?.value || "0",
+                    t_wat_empty: document.getElementById("t_wat_empty")?.value || "0",
+
+                    t_sod_count: document.getElementById("t_sod_count")?.value || "0",
+                    t_sod_full: document.getElementById("t_sod_full")?.value || "0",
+                    t_sod_half: document.getElementById("t_sod_half")?.value || "0",
+                    t_sod_low: document.getElementById("t_sod_low")?.value || "0",
+                    t_sod_empty: document.getElementById("t_sod_empty")?.value || "0",
+
+                    fu_section: document.getElementById("fu_section")?.value || "",
+                    fu_tank_no: document.getElementById("fu_tank_no")?.value || "",
+                    fu_status: document.getElementById("fu_status")?.value || "",
+                    fu_action: document.getElementById("fu_action")?.value || "",
+
+                    s_chlor_current: document.getElementById("s_chlor_current")?.value || "0",
+                    s_chlor_order: document.getElementById("s_chlor_order")?.value || "لا",
+                    s_lac_current: document.getElementById("s_lac_current")?.value || "0",
+                    s_lac_order: document.getElementById("s_lac_order")?.value || "لا",
+                    s_cit_current: document.getElementById("s_cit_current")?.value || "0",
+                    s_cit_order: document.getElementById("s_cit_order")?.value || "لا",
+                    s_vin_current: document.getElementById("s_vin_current")?.value || "0",
+                    s_vin_order: document.getElementById("s_vin_order")?.value || "لا",
+                    s_sul_current: document.getElementById("s_sul_current")?.value || "0",
+                    s_sul_order: document.getElementById("s_sul_order")?.value || "لا",
+                    s_ben_current: document.getElementById("s_ben_current")?.value || "0",
+                    s_ben_order: document.getElementById("s_ben_order")?.value || "لا",
+                    s_salt_current: document.getElementById("s_salt_current")?.value || "0",
+                    s_salt_order: document.getElementById("s_salt_order")?.value || "لا",
+
+                    notes: document.getElementById("daily_notes")?.value || ""
+                };
+
+                if (!editId) {
+                    report.managerSig = "";
+                    report.managerNotes = "";
+                    report.timestamp = Date.now();
+                }
+
                 if (editId) {
                     await db.collection('reports').doc(editId).update(report);
                     dailyForm.removeAttribute("data-edit-id");
@@ -203,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.hideForms();
             } catch (e) {
                 console.error("Error writing document: ", e);
-                alert("حدث خطأ أثناء حفظ التقرير.");
+                alert("حدث خطأ أثناء حفظ التقرير: " + e.message);
             } finally {
                 subBtn.innerHTML = originalBtnHtml;
                 subBtn.disabled = false;
@@ -212,6 +302,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+window.editReport = function (id) {
+    let report = currentReports.find(r => r.id === id);
+    if (report) {
+        sessionStorage.setItem('editReportData', JSON.stringify(report));
+        window.location.href = 'index.html';
+    }
+};
 
 window.deleteReport = async function (id) {
     if (confirm("هل تريد بالتأكيد حذف هذا التقرير؟")) {
@@ -260,6 +358,27 @@ window.checkPassword = async function () {
         const floatingAdmin = document.querySelector(".admin-floating");
         if (floatingAdmin) floatingAdmin.classList.add("hidden");
         window.loadReports();
+    } catch (error) {
+        console.error("Login Error:", error);
+        alert("الرقم السري غير صحيح. حاول مرة أخرى.");
+    }
+};
+
+window.checkUserPassword = async function () {
+    const userEmail = "hggghhg@jjhghg.com";
+    const pass = document.getElementById("userPass").value;
+
+    if (!pass) {
+        alert("الرجاء إدخال الرقم السري.");
+        return;
+    }
+
+    try {
+        await auth.signInWithEmailAndPassword(userEmail, pass);
+        const formsContainer = document.getElementById("formsContainer");
+        if (formsContainer) formsContainer.classList.remove("hidden");
+        const floatingUser = document.getElementById("userFloatingLogin");
+        if (floatingUser) floatingUser.classList.add("hidden");
     } catch (error) {
         console.error("Login Error:", error);
         alert("الرقم السري غير صحيح. حاول مرة أخرى.");
@@ -397,7 +516,8 @@ window.loadReports = async function () {
                             </div>
                         </div>
 
-                         <div class="rc-footer justify-end" style="border-top:none; margin-top:0;">
+                         <div class="rc-footer justify-end" style="border-top:none; margin-top:0; display: flex; gap: 8px;">
+                            <button onclick="window.editReport('${r.id}')" class="btn" style="background:var(--accent-1); color:white;"><i data-lucide="edit"></i> تعديل</button>
                             <button onclick="window.deleteReport('${r.id}')" class="btn btn-danger" style="margin-right:auto;"><i data-lucide="trash-2"></i> حذف (أدمن)</button>
                         </div>
                         </div> <!-- End of content wrapper -->
@@ -456,7 +576,8 @@ window.loadReports = async function () {
                             </div>
                         </div>
 
-                         <div class="rc-footer justify-end" style="border-top:none; margin-top:0;">
+                         <div class="rc-footer justify-end" style="border-top:none; margin-top:0; display: flex; gap: 8px;">
+                            <button onclick="window.editReport('${r.id}')" class="btn" style="background:var(--accent-1); color:white;"><i data-lucide="edit"></i> تعديل</button>
                             <button onclick="window.deleteReport('${r.id}')" class="btn btn-danger" style="margin-right:auto;"><i data-lucide="trash-2"></i> حذف (أدمن)</button>
                         </div>
                         </div> <!-- End of content wrapper -->
